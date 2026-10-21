@@ -1,0 +1,18 @@
+# TF-IDF + logistic regression on the random split.
+# Run: uv run python -m essaydetect.train --config configs/lr_random.yaml
+
+name: lr_random          # results are saved to results/lr_random/
+type: classical          # classical (scikit-learn) or transformer (Hugging Face)
+classifier: logreg       # logreg or svm
+split: random            # random or topic
+seed: 42
+
+features:                # passed straight to scikit-learn's TfidfVectorizer
+  ngram_range: [1, 2]    # single words and word pairs
+  min_df: 2              # ignore n-grams that appear in fewer than 2 essays
+  max_features: 200000   # keep the 200k most frequent n-grams
+  sublinear_tf: true     # use 1 + log(count) instead of the raw count
+
+C_grid: [0.1, 1.0, 10.0] # regularisation strengths to try; the best on val is kept
+
+subsample: null          # e.g. 2000 to train on a small sample while debugging

@@ -1,0 +1,19 @@
+# TF-IDF + linear SVM on the random split.
+# Same features as the logistic regression configs, only the classifier differs.
+# Run: uv run python -m essaydetect.train --config configs/svm_random.yaml
+
+name: svm_random
+type: classical
+classifier: svm
+split: random
+seed: 42
+
+features:
+  ngram_range: [1, 2]
+  min_df: 2
+  max_features: 200000
+  sublinear_tf: true
+
+C_grid: [0.1, 1.0, 10.0]
+
+subsample: null

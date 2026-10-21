@@ -1,0 +1,19 @@
+# Fine-tuned DistilBERT on the topic split. Needs a GPU (run on Kaggle).
+# Run: python -m essaydetect.train --config configs/distilbert_topic.yaml
+
+name: distilbert_topic
+type: transformer
+model_name: distilbert-base-uncased
+split: topic
+seed: 42
+
+max_length: 512
+learning_rate: 2.0e-5
+epochs: 3
+batch_size: 16
+gradient_accumulation_steps: 1
+weight_decay: 0.01
+warmup_ratio: 0.1
+fp16: true
+
+subsample: null

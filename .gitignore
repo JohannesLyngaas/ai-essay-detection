@@ -1,0 +1,36 @@
+# Data: never committed. See data/README.md for how to get it.
+data/*
+!data/README.md
+
+# Model weights and training checkpoints: too large for GitHub
+models/
+checkpoints/
+outputs/
+*.pt
+*.bin
+*.safetensors
+
+# Python environment and caches
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+
+# Notebooks and editors
+.ipynb_checkpoints/
+.vscode/
+.idea/
+
+# Experiment-tracking tools, in case one gets installed by accident
+wandb/
+mlruns/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Secrets: never commit API tokens
+kaggle.json
+.env

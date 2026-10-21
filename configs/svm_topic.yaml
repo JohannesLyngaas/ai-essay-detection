@@ -1,0 +1,18 @@
+# TF-IDF + linear SVM on the topic split.
+# Run: uv run python -m essaydetect.train --config configs/svm_topic.yaml
+
+name: svm_topic
+type: classical
+classifier: svm
+split: topic
+seed: 42
+
+features:
+  ngram_range: [1, 2]
+  min_df: 2
+  max_features: 200000
+  sublinear_tf: true
+
+C_grid: [0.1, 1.0, 10.0]
+
+subsample: null

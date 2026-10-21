@@ -1,0 +1,40 @@
+[project]
+name = "essaydetect"
+version = "0.1.0"
+description = "Detecting AI-generated student essays: classical classifiers vs fine-tuned transformers (TDT13, NTNU)"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "pandas>=2.0",
+    "numpy>=1.24",
+    "scikit-learn>=1.3",
+    "pyyaml>=6.0",
+    "matplotlib>=3.7",
+    "torch>=2.1",
+    "transformers>=4.48",  # 4.48 is the first version that includes ModernBERT
+    "datasets>=2.16",
+    "accelerate>=0.26",    # needed by the Hugging Face Trainer
+]
+
+# Tools you only need while developing, not to run the experiments.
+# `uv sync` installs these too.
+[dependency-groups]
+dev = [
+    "pytest>=8.0",
+    "ruff>=0.5",
+    "ipykernel>=6.0",  # lets VS Code run the notebooks with this environment
+    "kaggle>=1.6",     # only for scripts/download_data.sh
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/essaydetect"]
+
+[tool.ruff]
+line-length = 100
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

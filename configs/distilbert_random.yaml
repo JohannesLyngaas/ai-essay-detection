@@ -1,0 +1,19 @@
+# Fine-tuned DistilBERT on the random split. Needs a GPU (run on Kaggle).
+# Run: python -m essaydetect.train --config configs/distilbert_random.yaml
+
+name: distilbert_random
+type: transformer
+model_name: distilbert-base-uncased   # any Hugging Face model id works here
+split: random
+seed: 42
+
+max_length: 512          # DistilBERT cannot read more than 512 tokens
+learning_rate: 2.0e-5    # write 2.0e-5, not 2e-5: YAML reads 2e-5 as text, not a number
+epochs: 3
+batch_size: 16
+gradient_accumulation_steps: 1   # effective batch size = batch_size x this
+weight_decay: 0.01
+warmup_ratio: 0.1        # ramp the learning rate up over the first 10 % of steps
+fp16: true               # half precision on the GPU: faster and uses less memory
+
+subsample: null          # e.g. 2000 for a quick test run before using GPU hours

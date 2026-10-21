@@ -1,0 +1,20 @@
+# Fine-tuned ModernBERT-base on the random split. Needs a GPU (run on Kaggle).
+# Run: python -m essaydetect.train --config configs/modernbert_random.yaml
+
+name: modernbert_random
+type: transformer
+model_name: answerdotai/ModernBERT-base
+split: random
+seed: 42
+
+max_length: 1024         # ModernBERT can read up to 8192 tokens; 1024 should cover
+                         # most essays. Check the token lengths in notebook 01 and adjust.
+learning_rate: 2.0e-5    # same as DistilBERT, so the comparison is fair
+epochs: 3
+batch_size: 8            # longer inputs use more GPU memory, so a smaller batch...
+gradient_accumulation_steps: 2   # ...and 2 accumulation steps: effective batch 16, as DistilBERT
+weight_decay: 0.01
+warmup_ratio: 0.1
+fp16: true
+
+subsample: null
