@@ -17,12 +17,12 @@ This project compares classical text classifiers (TF-IDF with logistic regressio
 
 *Coming soon.*
 
-| Model | Random split, macro-F1 | Topic split, macro-F1 | Topic split, student essays flagged as AI |
-| --- | --- | --- | --- |
-| TF-IDF + logistic regression | | | |
-| TF-IDF + linear SVM | | | |
-| DistilBERT | | | |
-| ModernBERT | | | |
+| Model | Random split, ROC-AUC | Topic split, ROC-AUC | Topic split, AI recall | Topic split, student essays flagged as AI |
+| --- | --- | --- | --- | --- |
+| TF-IDF + logistic regression | | | | |
+| TF-IDF + linear SVM | | | | |
+| DistilBERT | | | | |
+| ModernBERT | | | | |
 
 The last column matters most in practice: it is the share of real student essays that would be wrongly flagged as AI-written.
 
@@ -37,7 +37,9 @@ The last column matters most in practice: it is the share of real student essays
 
 **Models.** Both classical models use the same TF-IDF features, so they differ only in the classifier. The transformers are fine-tuned with identical settings, so they differ only in the pretrained encoder.
 
-**Evaluation.** Accuracy, F1 for the AI class, macro-F1, the false positive rate and confusion matrices, followed by an error analysis by topic, essay length and source model.
+**Evaluation.** Accuracy, F1 for the AI class, macro-F1, AI recall, the false positive rate, ROC-AUC and confusion matrices, followed by an error analysis by topic, essay length and source model.
+
+The two test sets differ in class balance: 39 % AI in the random split, 18 % in the topic split. Accuracy and F1 depend on that balance, so the two splits are compared mainly on AI recall, false positive rate and ROC-AUC, which do not.
 
 ## Repository structure
 
@@ -84,6 +86,12 @@ uv run python -m essaydetect.data
 
 ```bash
 uv run python -m essaydetect.train --config configs/lr_topic.yaml
+```
+
+Each run saves `metrics.json` and `predictions.csv` in `results/<experiment>/`. To collect all finished runs into one table:
+
+```bash
+uv run python -m essaydetect.evaluate
 ```
 
 The classical models run on a laptop CPU. The transformers need a GPU (see below).
