@@ -1,0 +1,267 @@
+{
+  "name": "lr_topic",
+  "split": "topic",
+  "n_train": 34334,
+  "n_test": 6542,
+  "train_seconds": 43.9,
+  "test": {
+    "accuracy": 0.9499,
+    "f1_ai": 0.8739,
+    "macro_f1": 0.9213,
+    "ai_recall": 0.9735,
+    "false_positive_rate": 0.0553,
+    "roc_auc": 0.9924,
+    "confusion_matrix": {
+      "tn": 5077,
+      "fp": 297,
+      "fn": 31,
+      "tp": 1137
+    }
+  },
+  "details": {
+    "best_C": 1.0,
+    "tuning": [
+      {
+        "C": 0.1,
+        "val_macro_f1": 0.965
+      },
+      {
+        "C": 1.0,
+        "val_macro_f1": 0.9736
+      },
+      {
+        "C": 10.0,
+        "val_macro_f1": 0.9688
+      }
+    ],
+    "n_features": 200000,
+    "top_features": {
+      "ai": [
+        [
+          "important",
+          3.997
+        ],
+        [
+          "it like",
+          3.833
+        ],
+        [
+          "re",
+          3.319
+        ],
+        [
+          "in conclusion",
+          3.298
+        ],
+        [
+          "conclusion",
+          3.279
+        ],
+        [
+          "additionally",
+          3.274
+        ],
+        [
+          "important to",
+          3.273
+        ],
+        [
+          "support",
+          2.959
+        ],
+        [
+          "and",
+          2.956
+        ],
+        [
+          "potential",
+          2.953
+        ],
+        [
+          "super",
+          2.891
+        ],
+        [
+          "it not",
+          2.878
+        ],
+        [
+          "provide",
+          2.729
+        ],
+        [
+          "essay",
+          2.726
+        ],
+        [
+          "it important",
+          2.686
+        ],
+        [
+          "you re",
+          2.627
+        ],
+        [
+          "hey",
+          2.581
+        ],
+        [
+          "benefits",
+          2.535
+        ],
+        [
+          "my",
+          2.525
+        ],
+        [
+          "goals",
+          2.452
+        ],
+        [
+          "believe that",
+          2.437
+        ],
+        [
+          "lead to",
+          2.397
+        ],
+        [
+          "significant",
+          2.296
+        ],
+        [
+          "success",
+          2.259
+        ],
+        [
+          "cool",
+          2.239
+        ]
+      ],
+      "student": [
+        [
+          "because",
+          -7.067
+        ],
+        [
+          "would",
+          -4.771
+        ],
+        [
+          "very",
+          -4.377
+        ],
+        [
+          "will",
+          -4.116
+        ],
+        [
+          "the students",
+          -3.913
+        ],
+        [
+          "you",
+          -3.667
+        ],
+        [
+          "then",
+          -3.651
+        ],
+        [
+          "people",
+          -3.544
+        ],
+        [
+          "many",
+          -3.293
+        ],
+        [
+          "car",
+          -3.166
+        ],
+        [
+          "dont",
+          -3.133
+        ],
+        [
+          "do",
+          -3.132
+        ],
+        [
+          "what",
+          -3.113
+        ],
+        [
+          "they",
+          -3.098
+        ],
+        [
+          "home",
+          -3.081
+        ],
+        [
+          "driving",
+          -2.967
+        ],
+        [
+          "percent",
+          -2.898
+        ],
+        [
+          "no",
+          -2.874
+        ],
+        [
+          "although",
+          -2.859
+        ],
+        [
+          "cars",
+          -2.842
+        ],
+        [
+          "if",
+          -2.815
+        ],
+        [
+          "because of",
+          -2.808
+        ],
+        [
+          "go",
+          -2.807
+        ],
+        [
+          "for the",
+          -2.769
+        ],
+        [
+          "so",
+          -2.754
+        ]
+      ]
+    }
+  },
+  "config": {
+    "name": "lr_topic",
+    "type": "classical",
+    "classifier": "logreg",
+    "split": "topic",
+    "seed": 42,
+    "features": {
+      "ngram_range": [
+        1,
+        2
+      ],
+      "min_df": 2,
+      "max_features": 200000,
+      "sublinear_tf": true
+    },
+    "C_grid": [
+      0.1,
+      1.0,
+      10.0
+    ],
+    "subsample": null
+  }
+}

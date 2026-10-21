@@ -1,0 +1,267 @@
+{
+  "name": "svm_random",
+  "split": "random",
+  "n_train": 35890,
+  "n_test": 4487,
+  "train_seconds": 34.7,
+  "test": {
+    "accuracy": 0.9969,
+    "f1_ai": 0.996,
+    "macro_f1": 0.9967,
+    "ai_recall": 0.992,
+    "false_positive_rate": 0.0,
+    "roc_auc": 0.9998,
+    "confusion_matrix": {
+      "tn": 2737,
+      "fp": 0,
+      "fn": 14,
+      "tp": 1736
+    }
+  },
+  "details": {
+    "best_C": 10.0,
+    "tuning": [
+      {
+        "C": 0.1,
+        "val_macro_f1": 0.9932
+      },
+      {
+        "C": 1.0,
+        "val_macro_f1": 0.9967
+      },
+      {
+        "C": 10.0,
+        "val_macro_f1": 0.9974
+      }
+    ],
+    "n_features": 200000,
+    "top_features": {
+      "ai": [
+        [
+          "additionally",
+          2.027
+        ],
+        [
+          "your name",
+          1.778
+        ],
+        [
+          "in conclusion",
+          1.732
+        ],
+        [
+          "it important",
+          1.72
+        ],
+        [
+          "it not",
+          1.683
+        ],
+        [
+          "important",
+          1.681
+        ],
+        [
+          "conclusion",
+          1.671
+        ],
+        [
+          "and",
+          1.628
+        ],
+        [
+          "firstly",
+          1.546
+        ],
+        [
+          "it like",
+          1.505
+        ],
+        [
+          "name",
+          1.505
+        ],
+        [
+          "potential",
+          1.401
+        ],
+        [
+          "important to",
+          1.398
+        ],
+        [
+          "significant",
+          1.365
+        ],
+        [
+          "sincerely your",
+          1.335
+        ],
+        [
+          "believe that",
+          1.33
+        ],
+        [
+          "essay",
+          1.29
+        ],
+        [
+          "you re",
+          1.212
+        ],
+        [
+          "furthermore",
+          1.165
+        ],
+        [
+          "re",
+          1.156
+        ],
+        [
+          "people might",
+          1.138
+        ],
+        [
+          "us learn",
+          1.136
+        ],
+        [
+          "goals",
+          1.133
+        ],
+        [
+          "cool",
+          1.128
+        ],
+        [
+          "example if",
+          1.124
+        ]
+      ],
+      "student": [
+        [
+          "because",
+          -2.973
+        ],
+        [
+          "would",
+          -2.186
+        ],
+        [
+          "very",
+          -2.102
+        ],
+        [
+          "you",
+          -1.957
+        ],
+        [
+          "car",
+          -1.921
+        ],
+        [
+          "venus",
+          -1.906
+        ],
+        [
+          "many",
+          -1.848
+        ],
+        [
+          "the students",
+          -1.685
+        ],
+        [
+          "then",
+          -1.635
+        ],
+        [
+          "will",
+          -1.628
+        ],
+        [
+          "cars",
+          -1.572
+        ],
+        [
+          "student_name",
+          -1.531
+        ],
+        [
+          "although",
+          -1.513
+        ],
+        [
+          "because of",
+          -1.503
+        ],
+        [
+          "schools",
+          -1.482
+        ],
+        [
+          "people",
+          -1.378
+        ],
+        [
+          "kids",
+          -1.358
+        ],
+        [
+          "dont",
+          -1.351
+        ],
+        [
+          "paragraph",
+          -1.339
+        ],
+        [
+          "driving",
+          -1.338
+        ],
+        [
+          "should",
+          -1.293
+        ],
+        [
+          "percent",
+          -1.264
+        ],
+        [
+          "home",
+          -1.225
+        ],
+        [
+          "that is",
+          -1.209
+        ],
+        [
+          "do",
+          -1.206
+        ]
+      ]
+    }
+  },
+  "config": {
+    "name": "svm_random",
+    "type": "classical",
+    "classifier": "svm",
+    "split": "random",
+    "seed": 42,
+    "features": {
+      "ngram_range": [
+        1,
+        2
+      ],
+      "min_df": 2,
+      "max_features": 200000,
+      "sublinear_tf": true
+    },
+    "C_grid": [
+      0.1,
+      1.0,
+      10.0
+    ],
+    "subsample": null
+  }
+}
