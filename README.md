@@ -15,12 +15,12 @@ This project compares classical text classifiers (TF-IDF with logistic regressio
 
 ## Results
 
-*Coming soon.*
+*Ongoing.*
 
 | Model | Random split, ROC-AUC | Topic split, ROC-AUC | Topic split, AI recall | Topic split, student essays flagged as AI |
 | --- | --- | --- | --- | --- |
-| TF-IDF + logistic regression | | | | |
-| TF-IDF + linear SVM | | | | |
+| TF-IDF + logistic regression |1.000|0.992|0.974|5.5%|
+| TF-IDF + linear SVM |1.000|0.994|0.976|5.1%|
 | DistilBERT | | | | |
 | ModernBERT | | | | |
 
