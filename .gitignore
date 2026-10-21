@@ -31,6 +31,9 @@ mlruns/
 .DS_Store
 Thumbs.db
 
+# Personal instructions for Claude Code
+CLAUDE.local.md
+
 # Secrets: never commit API tokens
 kaggle.json
 .env
