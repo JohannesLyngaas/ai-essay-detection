@@ -1,0 +1,116 @@
+{
+  "seed": 42,
+  "n_essays_after_cleaning": 44864,
+  "random": {
+    "train": {
+      "n_essays": 35890,
+      "n_ai": 13997,
+      "n_human": 21893,
+      "ai_share": 0.39,
+      "topics": [
+        "\"A Cowboy Who Rode the Waves\"",
+        "Car-free cities",
+        "Cell phones at school",
+        "Community service",
+        "Distance learning",
+        "Does the electoral college work?",
+        "Driverless cars",
+        "Exploring Venus",
+        "Facial action coding system",
+        "Grades for extracurricular activities",
+        "Mandatory extracurricular activities",
+        "Phones and driving",
+        "Seeking multiple opinions",
+        "Summer projects",
+        "The Face on Mars"
+      ]
+    },
+    "val": {
+      "n_essays": 4487,
+      "n_ai": 1750,
+      "n_human": 2737,
+      "ai_share": 0.39,
+      "topics": [
+        "\"A Cowboy Who Rode the Waves\"",
+        "Car-free cities",
+        "Cell phones at school",
+        "Community service",
+        "Distance learning",
+        "Does the electoral college work?",
+        "Driverless cars",
+        "Exploring Venus",
+        "Facial action coding system",
+        "Grades for extracurricular activities",
+        "Mandatory extracurricular activities",
+        "Phones and driving",
+        "Seeking multiple opinions",
+        "Summer projects",
+        "The Face on Mars"
+      ]
+    },
+    "test": {
+      "n_essays": 4487,
+      "n_ai": 1750,
+      "n_human": 2737,
+      "ai_share": 0.39,
+      "topics": [
+        "\"A Cowboy Who Rode the Waves\"",
+        "Car-free cities",
+        "Cell phones at school",
+        "Community service",
+        "Distance learning",
+        "Does the electoral college work?",
+        "Driverless cars",
+        "Exploring Venus",
+        "Facial action coding system",
+        "Grades for extracurricular activities",
+        "Mandatory extracurricular activities",
+        "Phones and driving",
+        "Seeking multiple opinions",
+        "Summer projects",
+        "The Face on Mars"
+      ]
+    }
+  },
+  "topic": {
+    "train": {
+      "n_essays": 34334,
+      "n_ai": 15255,
+      "n_human": 19079,
+      "ai_share": 0.444,
+      "topics": [
+        "Car-free cities",
+        "Cell phones at school",
+        "Distance learning",
+        "Does the electoral college work?",
+        "Facial action coding system",
+        "Mandatory extracurricular activities",
+        "Phones and driving",
+        "Seeking multiple opinions",
+        "Summer projects",
+        "The Face on Mars"
+      ]
+    },
+    "val": {
+      "n_essays": 3988,
+      "n_ai": 1074,
+      "n_human": 2914,
+      "ai_share": 0.269,
+      "topics": [
+        "\"A Cowboy Who Rode the Waves\"",
+        "Community service"
+      ]
+    },
+    "test": {
+      "n_essays": 6542,
+      "n_ai": 1168,
+      "n_human": 5374,
+      "ai_share": 0.179,
+      "topics": [
+        "Driverless cars",
+        "Exploring Venus",
+        "Grades for extracurricular activities"
+      ]
+    }
+  }
+}
