@@ -68,7 +68,7 @@ The two test sets differ in class balance: 39 % AI in the random split, 18 % in 
 Requires [uv](https://docs.astral.sh/uv/getting-started/installation/) and git.
 
 ```bash
-git clone https://github.com/<your-username>/ai-essay-detection.git
+git clone https://github.com/JohannesLyngaas/ai-essay-detection.git
 cd ai-essay-detection
 uv sync              # creates .venv/ and installs all dependencies
 uv run pytest        # quick check that everything works
