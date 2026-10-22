@@ -63,8 +63,16 @@ def main() -> None:
     )  # fmt: skip
 
     print(f"\nTest results ({len(test):,} essays, trained in {train_seconds:.0f} s)")
-    for key in ("accuracy", "macro_f1", "ai_recall", "false_positive_rate", "roc_auc"):
-        print(f"  {key:<20} {metrics[key]:.4f}")
+    for key in (
+        "accuracy",
+        "macro_f1",
+        "ai_recall",
+        "false_positive_rate",
+        "ai_recall_at_1pct_fpr",
+        "roc_auc",
+    ):
+        if key in metrics:  # the last two are missing if the model gave no scores
+            print(f"  {key:<22} {metrics[key]:.4f}")
     print(f"Saved to {out}/")
 
 

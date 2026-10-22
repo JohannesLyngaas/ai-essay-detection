@@ -16,6 +16,10 @@ A note on the metrics. The two test sets have very different class balance:
 that balance (on the topic test set, a model that always says "student" already gets
 82 % accuracy). AI recall, false positive rate and ROC-AUC do not, so those are the
 fairest way to compare the two splits.
+
+ai_recall_at_1pct_fpr is there for the same reason: it answers "if we only accept that 1 %
+of real student essays get flagged, how many AI essays do we still catch?", which is both
+independent of class balance and independent of the threshold each model happens to use.
 """
 
 from __future__ import annotations
@@ -24,9 +28,33 @@ import json
 from pathlib import Path
 
 import pandas as pd
-from sklearn.metrics import accuracy_score, confusion_matrix, f1_score, roc_auc_score
+from sklearn.metrics import (
+    accuracy_score,
+    confusion_matrix,
+    f1_score,
+    roc_auc_score,
+    roc_curve,
+)
 
 from essaydetect.data import LABEL_COL, SOURCE_COL, TOPIC_COL
+
+
+def ai_recall_at_fpr(y_true, y_score, max_fpr: float = 0.01) -> float:
+    """The highest AI recall reachable while flagging at most max_fpr of student essays.
+
+    y_pred uses one fixed threshold (score > 0). This metric asks a different question:
+    if we were free to move the threshold, how many AI essays could we catch while
+    keeping the false positive rate inside a budget we can defend to a teacher?
+
+    roc_curve walks through every threshold the scores allow and reports, for each one,
+    the false positive rate (share of student essays flagged) and the true positive rate
+    (which is exactly AI recall). We keep the thresholds that stay inside the budget and
+    take the best recall among them.
+    """
+    fpr, tpr, _ = roc_curve(y_true, y_score)
+    # roc_curve always includes the threshold that flags nothing (fpr = 0, tpr = 0),
+    # so at least one point is always inside the budget and .max() is always defined.
+    return float(tpr[fpr <= max_fpr].max())
 
 
 def compute_metrics(y_true, y_pred, y_score=None) -> dict:
@@ -54,6 +82,8 @@ def compute_metrics(y_true, y_pred, y_score=None) -> dict:
         # ROC-AUC: the chance that a random AI essay gets a higher score than a random
         # student essay. 0.5 = guessing, 1.0 = perfect ranking. Independent of threshold.
         metrics["roc_auc"] = roc_auc_score(y_true, y_score)
+        # Best AI recall we could get at a false positive rate of at most 1 %.
+        metrics["ai_recall_at_1pct_fpr"] = ai_recall_at_fpr(y_true, y_score, max_fpr=0.01)
 
     metrics = {key: round(float(value), 4) for key, value in metrics.items()}
     metrics["confusion_matrix"] = {"tn": int(tn), "fp": int(fp), "fn": int(fn), "tp": int(tp)}
@@ -111,6 +141,8 @@ def collect_results(results_dir: str | Path = "results") -> pd.DataFrame:
                 "macro_f1": test["macro_f1"],
                 "ai_recall": test["ai_recall"],
                 "false_positive_rate": test["false_positive_rate"],
+                # .get: these two are missing if the run had no scores.
+                "ai_recall_at_1pct_fpr": test.get("ai_recall_at_1pct_fpr"),
                 "roc_auc": test.get("roc_auc"),
                 "train_seconds": round(record["train_seconds"]),
             }

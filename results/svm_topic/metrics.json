@@ -3,7 +3,7 @@
   "split": "topic",
   "n_train": 34334,
   "n_test": 6542,
-  "train_seconds": 28.0,
+  "train_seconds": 33.8,
   "test": {
     "accuracy": 0.9537,
     "f1_ai": 0.8827,
@@ -11,6 +11,7 @@
     "ai_recall": 0.976,
     "false_positive_rate": 0.0512,
     "roc_auc": 0.9941,
+    "ai_recall_at_1pct_fpr": 0.9546,
     "confusion_matrix": {
       "tn": 5099,
       "fp": 275,

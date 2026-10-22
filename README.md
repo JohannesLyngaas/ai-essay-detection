@@ -17,14 +17,14 @@ This project compares classical text classifiers (TF-IDF with logistic regressio
 
 *Ongoing.*
 
-| Model | Random split, ROC-AUC | Topic split, ROC-AUC | Topic split, AI recall | Topic split, student essays flagged as AI |
-| --- | --- | --- | --- | --- |
-| TF-IDF + logistic regression |1.000|0.992|0.974|5.5%|
-| TF-IDF + linear SVM |1.000|0.994|0.976|5.1%|
-| DistilBERT | | | | |
-| ModernBERT | | | | |
+| Model | Random split, ROC-AUC | Topic split, ROC-AUC | Topic split, AI recall | Topic split, AI recall at 1 % FPR | Topic split, student essays flagged as AI |
+| --- | --- | --- | --- | --- | --- |
+| TF-IDF + logistic regression |1.000|0.992|0.974|0.944|5.5%|
+| TF-IDF + linear SVM |1.000|0.994|0.976|0.955|5.1%|
+| DistilBERT | | | | | |
+| ModernBERT | | | | | |
 
-The last column matters most in practice: it is the share of real student essays that would be wrongly flagged as AI-written.
+The last column matters most in practice: it is the share of real student essays that would be wrongly flagged as AI-written. Both classical models flag about 5 % of student essays at their default threshold, which is too many. The column before it answers the natural follow-up: if the threshold is tightened until only 1 % of student essays are flagged, the models still catch 94–96 % of the AI essays.
 
 ## Approach
 
@@ -37,7 +37,7 @@ The last column matters most in practice: it is the share of real student essays
 
 **Models.** Both classical models use the same TF-IDF features, so they differ only in the classifier. The transformers are fine-tuned with identical settings, so they differ only in the pretrained encoder.
 
-**Evaluation.** Accuracy, F1 for the AI class, macro-F1, AI recall, the false positive rate, ROC-AUC and confusion matrices, followed by an error analysis by topic, essay length and source model.
+**Evaluation.** Accuracy, F1 for the AI class, macro-F1, AI recall, the false positive rate, AI recall at a false positive rate of 1 %, ROC-AUC and confusion matrices, followed by an error analysis by topic, essay length and source model.
 
 The two test sets differ in class balance: 39 % AI in the random split, 18 % in the topic split. Accuracy and F1 depend on that balance, so the two splits are compared mainly on AI recall, false positive rate and ROC-AUC, which do not.
 
