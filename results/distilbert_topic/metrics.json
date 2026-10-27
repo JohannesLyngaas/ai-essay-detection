@@ -1,0 +1,62 @@
+{
+  "name": "distilbert_topic",
+  "split": "topic",
+  "n_train": 34334,
+  "n_test": 6542,
+  "train_seconds": 1468.9,
+  "test": {
+    "accuracy": 0.9586,
+    "f1_ai": 0.8955,
+    "macro_f1": 0.9348,
+    "ai_recall": 0.994,
+    "false_positive_rate": 0.0491,
+    "roc_auc": 0.9989,
+    "ai_recall_at_1pct_fpr": 0.9863,
+    "confusion_matrix": {
+      "tn": 5110,
+      "fp": 264,
+      "fn": 7,
+      "tp": 1161
+    }
+  },
+  "details": {
+    "model_name": "distilbert-base-uncased",
+    "max_length": 512,
+    "effective_batch_size": 16,
+    "warmup_steps": 643,
+    "fp16": true,
+    "best_epoch": 2.0,
+    "best_val_macro_f1": 0.8495,
+    "val_macro_f1_per_epoch": [
+      {
+        "epoch": 1.0,
+        "val_macro_f1": 0.826
+      },
+      {
+        "epoch": 2.0,
+        "val_macro_f1": 0.8495
+      },
+      {
+        "epoch": 3.0,
+        "val_macro_f1": 0.7951
+      }
+    ],
+    "test_share_truncated": 0.2267
+  },
+  "config": {
+    "name": "distilbert_topic",
+    "type": "transformer",
+    "model_name": "distilbert-base-uncased",
+    "split": "topic",
+    "seed": 42,
+    "max_length": 512,
+    "learning_rate": 2e-05,
+    "epochs": 3,
+    "batch_size": 16,
+    "gradient_accumulation_steps": 1,
+    "weight_decay": 0.01,
+    "warmup_ratio": 0.1,
+    "fp16": true,
+    "subsample": null
+  }
+}
