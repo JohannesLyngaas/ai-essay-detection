@@ -21,10 +21,12 @@ This project compares classical text classifiers (TF-IDF with logistic regressio
 | --- | --- | --- | --- | --- | --- |
 | TF-IDF + logistic regression |1.000|0.992|0.974|0.944|5.5%|
 | TF-IDF + linear SVM |1.000|0.994|0.976|0.955|5.1%|
-| DistilBERT | | | | | |
+| DistilBERT |1.000|0.999|0.994|0.986|4.9%|
 | ModernBERT | | | | | |
 
-The last column matters most in practice: it is the share of real student essays that would be wrongly flagged as AI-written. Both classical models flag about 5 % of student essays at their default threshold, which is too many. The column before it answers the natural follow-up: if the threshold is tightened until only 1 % of student essays are flagged, the models still catch 94–96 % of the AI essays.
+The last column matters most in practice: it is the share of real student essays that would be wrongly flagged as AI-written. Every model so far flags about 5 % of student essays at its default threshold, which is too many. The column before it answers the natural follow-up: if the threshold is tightened until only 1 % of student essays are flagged, the classical models still catch 94–96 % of the AI essays, and DistilBERT 98.6 %.
+
+Two things stand out. On the random split all three models are at or near ROC-AUC 1.000, so that split cannot tell them apart at all — the topic split is where the comparison happens. And on the topic split the headline numbers look close (ROC-AUC 0.992 → 0.999), but the error counts do not: on the 6,542 test essays DistilBERT misses 7 AI essays where logistic regression misses 31, and at a 1 % false positive rate it catches 98.6 % of AI essays against 94.4 %. Fine-tuning buys roughly a threefold cut in the remaining errors rather than a different league of performance.
 
 ## Approach
 
