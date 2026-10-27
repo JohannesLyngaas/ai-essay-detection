@@ -1,5 +1,6 @@
 | experiment | split | accuracy | macro_f1 | ai_recall | false_positive_rate | ai_recall_at_1pct_fpr | roc_auc | train_seconds |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| distilbert_random | random | 0.996 | 0.996 | 0.995 | 0.003 | 0.997 | 1.000 | 1574 |
 | distilbert_topic | topic | 0.959 | 0.935 | 0.994 | 0.049 | 0.986 | 0.999 | 1469 |
 | lr_random | random | 0.995 | 0.995 | 0.988 | 0.000 | 0.999 | 1.000 | 35 |
 | lr_topic | topic | 0.950 | 0.921 | 0.974 | 0.055 | 0.944 | 0.992 | 30 |
