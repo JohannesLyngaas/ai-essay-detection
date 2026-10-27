@@ -1,0 +1,22 @@
+# Smoke test: does the whole transformer pipeline run end to end?
+# Small enough to finish on a laptop CPU in a few minutes. The scores it produces
+# are meaningless (200 training essays, 1 epoch) - the point is that nothing crashes.
+# Run: uv run python -m essaydetect.train --config configs/distilbert_debug.yaml --results-dir checkpoints/debug-results
+
+name: distilbert_debug
+type: transformer
+model_name: distilbert-base-uncased
+split: random
+seed: 42
+
+max_length: 512          # same as the real DistilBERT runs, so truncation is tested too
+learning_rate: 2.0e-5
+epochs: 1
+batch_size: 8            # smaller than on GPU: a laptop has less memory to spare
+gradient_accumulation_steps: 1
+weight_decay: 0.01
+warmup_ratio: 0.1
+fp16: false              # fp16 needs a GPU; the code also turns it off by itself on CPU
+
+subsample: 200           # train on 200 essays
+subsample_eval: 100      # and score only 100 val and 100 test essays (debug only)

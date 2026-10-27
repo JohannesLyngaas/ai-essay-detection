@@ -96,6 +96,15 @@ uv run python -m essaydetect.evaluate
 
 The classical models run on a laptop CPU. The transformers need a GPU (see below).
 
+To check that the transformer pipeline works before spending GPU hours, there is a small
+smoke-test config: 200 training essays, one epoch, no fp16. It runs on a laptop CPU in a
+few minutes and its scores are meaningless on purpose, so its output is kept out of
+`results/`:
+
+```bash
+uv run python -m essaydetect.train --config configs/distilbert_debug.yaml --results-dir checkpoints/debug-results
+```
+
 ### Running the transformers on Kaggle
 
 In a Kaggle notebook with the DAIGT v2 dataset attached, and GPU and internet turned on:

@@ -40,6 +40,19 @@ def main() -> None:
         splits["train"] = splits["train"].sample(n=n, random_state=config["seed"])
         print(f"Subsample: training on {n:,} essays")
 
+    # subsample_eval also shrinks val and test. Only for smoke tests on a laptop,
+    # where scoring thousands of essays with a transformer takes far too long. The
+    # resulting scores are NOT comparable to a real run, so never set this in a
+    # config whose results go in the report.
+    if config.get("subsample_eval"):
+        n = config["subsample_eval"]
+        for part in ("val", "test"):
+            k = min(n, len(splits[part]))
+            splits[part] = splits[part].sample(n=k, random_state=config["seed"])
+        print(
+            f"Subsample: scoring {len(splits['val']):,} val and {len(splits['test']):,} test essays"
+        )
+
     start = time.time()
     if config["type"] == "classical":
         from essaydetect.classical import train_classical
