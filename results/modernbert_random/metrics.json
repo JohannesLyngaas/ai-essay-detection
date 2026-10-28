@@ -1,0 +1,62 @@
+{
+  "name": "modernbert_random",
+  "split": "random",
+  "n_train": 35890,
+  "n_test": 4487,
+  "train_seconds": 8243.0,
+  "test": {
+    "accuracy": 0.9982,
+    "f1_ai": 0.9977,
+    "macro_f1": 0.9981,
+    "ai_recall": 0.996,
+    "false_positive_rate": 0.0004,
+    "roc_auc": 0.9999,
+    "ai_recall_at_1pct_fpr": 0.9977,
+    "confusion_matrix": {
+      "tn": 2736,
+      "fp": 1,
+      "fn": 7,
+      "tp": 1743
+    }
+  },
+  "details": {
+    "model_name": "answerdotai/ModernBERT-base",
+    "max_length": 1024,
+    "effective_batch_size": 16,
+    "warmup_steps": 673,
+    "fp16": true,
+    "best_epoch": 3.0,
+    "best_val_macro_f1": 0.9979,
+    "val_macro_f1_per_epoch": [
+      {
+        "epoch": 1.0,
+        "val_macro_f1": 0.996
+      },
+      {
+        "epoch": 2.0,
+        "val_macro_f1": 0.997
+      },
+      {
+        "epoch": 3.0,
+        "val_macro_f1": 0.9979
+      }
+    ],
+    "test_share_truncated": 0.0174
+  },
+  "config": {
+    "name": "modernbert_random",
+    "type": "transformer",
+    "model_name": "answerdotai/ModernBERT-base",
+    "split": "random",
+    "seed": 42,
+    "max_length": 1024,
+    "learning_rate": 2e-05,
+    "epochs": 3,
+    "batch_size": 8,
+    "gradient_accumulation_steps": 2,
+    "weight_decay": 0.01,
+    "warmup_ratio": 0.1,
+    "fp16": true,
+    "subsample": null
+  }
+}
