@@ -15,18 +15,18 @@ This project compares classical text classifiers (TF-IDF with logistic regressio
 
 ## Results
 
-*Ongoing.*
-
 | Model | Random split, ROC-AUC | Topic split, ROC-AUC | Topic split, AI recall | Topic split, AI recall at 1 % FPR | Topic split, student essays flagged as AI |
 | --- | --- | --- | --- | --- | --- |
 | TF-IDF + logistic regression |1.000|0.992|0.974|0.944|5.5%|
 | TF-IDF + linear SVM |1.000|0.994|0.976|0.955|5.1%|
 | DistilBERT |1.000|0.999|0.994|0.986|4.9%|
-| ModernBERT | | | | | |
+| ModernBERT |1.000|0.999|0.996|0.996|0.9%|
 
-The last column matters most in practice: it is the share of real student essays that would be wrongly flagged as AI-written. Every model so far flags about 5 % of student essays at its default threshold, which is too many. The column before it answers the natural follow-up: if the threshold is tightened until only 1 % of student essays are flagged, the classical models still catch 94–96 % of the AI essays, and DistilBERT 98.6 %.
+The last column matters most in practice: it is the share of real student essays that would be wrongly flagged as AI-written. The classical models and DistilBERT all flag about 5 % of student essays at their default threshold, which is too many to use on real students. ModernBERT is the first model to get that down to about 1 % without giving up AI recall.
 
-Two things stand out. On the random split all three models are at or near ROC-AUC 1.000, so that split cannot tell them apart at all — the topic split is where the comparison happens. And on the topic split the headline numbers look close (ROC-AUC 0.992 → 0.999), but the error counts do not: on the 6,542 test essays DistilBERT misses 7 AI essays where logistic regression misses 31, and at a 1 % false positive rate it catches 98.6 % of AI essays against 94.4 %. Fine-tuning buys roughly a threefold cut in the remaining errors rather than a different league of performance.
+On the random split every model is at or near ROC-AUC 1.000, so that split cannot tell them apart: across its 4,487 test essays the four models wrongly flag 1, 0, 9 and 1 student essays and miss 21, 14, 8 and 7 AI essays respectively. Differences that small are within the noise of a single run. The topic split, with essay prompts no model has seen, is where the comparison happens. There the ranking quality is also close to saturated (ROC-AUC 0.992 → 0.999), so the error counts on the 6,542 test essays say more. Out of 5,374 genuine student essays, logistic regression wrongly flags 297, DistilBERT 264, and ModernBERT 48. Out of 1,168 AI essays, they miss 31, 7 and 5.
+
+Two caveats for reading the transformer rows. DistilBERT and ModernBERT are nearly tied on ROC-AUC (0.9989 vs 0.9992), so most of ModernBERT's advantage is a better-placed decision threshold rather than better ranking; tightened to a 1 % false positive rate, the gap narrows to 98.6 % vs 99.6 % AI recall. And the two encoders do not read the same amount of text: DistilBERT is capped at 512 tokens and loses the ending of 22.7 % of the test essays, while ModernBERT reads 1024 and truncates only 0.3 %. Part of the difference is the newer encoder, part is simply seeing the whole essay. ModernBERT also took about 5.5x longer to fine-tune (8,079 s vs 1,469 s on the same GPU).
 
 ## Approach
 
