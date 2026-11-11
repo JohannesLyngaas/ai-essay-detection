@@ -4,13 +4,13 @@ Can a classifier tell essays written by students from essays written by large la
 
 This project compares classical text classifiers (TF-IDF with logistic regression and a linear SVM) with fine-tuned transformer encoders (DistilBERT and ModernBERT) on the [DAIGT v2](https://www.kaggle.com/datasets/thedrcat/daigt-v2-train-dataset) dataset of roughly 45,000 essays. It is my course project in TDT13 at NTNU, autumn 2026.
 
-> **Status:** work in progress. Results are added as the experiments finish.
 
 ## Research questions
 
 1. How well do TF-IDF + logistic regression and a linear SVM separate student-written and AI-generated essays?
-2. How much better are fine-tuned transformers, and does a newer encoder (ModernBERT) improve on DistilBERT?
-3. How much does performance drop on essay topics the models have not seen during training?
+2. Do fine-tuned transformers do better, and does ModernBERT improve on DistilBERT?
+3. How much does performance drop on new essay topics, as when a teacher writes a new assign-
+ment?
 4. Which essays do the models get wrong, and what do they have in common?
 
 ## Results
