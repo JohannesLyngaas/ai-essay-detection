@@ -17,7 +17,7 @@ ment?
 
 | Model | Random split, ROC-AUC | Topic split, ROC-AUC | Topic split, AI recall | Topic split, AI recall at 1 % FPR | Topic split, student essays flagged as AI |
 | --- | --- | --- | --- | --- | --- |
-| TF-IDF + logistic regression |1.000|0.992|0.974|0.944|5.5%|
+| TF-IDF + logistic regression |1.000|0.992|0.973|0.943|5.5%|
 | TF-IDF + linear SVM |1.000|0.994|0.976|0.955|5.1%|
 | DistilBERT |1.000|0.999|0.994|0.986|4.9%|
 | ModernBERT |1.000|0.999|0.996|0.996|0.9%|
@@ -53,7 +53,8 @@ The two test sets differ in class balance: 39 % AI in the random split, 18 % in 
 │   └── 02_error_analysis.ipynb
 ├── results/              metrics and predictions for every run (committed)
 ├── scripts/
-│   └── download_data.sh
+│   ├── download_data.sh
+│   └── leave_one_topic_out.py
 ├── src/essaydetect/
 │   ├── data.py           load, clean and split the data
 │   ├── classical.py      TF-IDF + logistic regression / linear SVM
@@ -120,6 +121,23 @@ In a Kaggle notebook with the DAIGT v2 dataset attached, and GPU and internet tu
 ```
 
 Check the exact input path in the notebook's *Input* panel. Download the new folder in `results/` afterwards and commit it.
+
+### Leave-one-topic-out (classical models)
+
+The topic split holds out only three topics. To see how much the result depends on
+which topics are held out, each of the 15 topics is held out in turn, and logistic
+regression and the linear SVM are trained on the other 14 (C fixed to the topic-split
+values: 1.0 for logistic regression, 0.1 for the SVM).
+
+    uv run python scripts/leave_one_topic_out.py
+
+Results per topic are in `results/loto/per_topic.csv`.
+
+**Key finding:** *Exploring Venus* is the worst of all 15 topics, with a false
+positive rate of 12.5 % for logistic regression against a median of 0.6 %.
+But it is not the only bad one: *Summer projects* (4.7 %), *Facial action coding
+system* (3.0 %) and *Distance learning* (2.9 %) are also above 2 %. Whether the
+prompt asks students to work from a source text does not explain the difference.
 
 ## Report
 
